@@ -4,7 +4,7 @@
     <Appenders>
         <Console name="console" target="SYSTEM_OUT">
             <PatternLayout>
-                <Pattern>%d %p %c{1.} [%t] requestId=%X{requestId} %m%n</Pattern>
+                <Pattern>%p [%t] requestId=%X{requestId} %m%n</Pattern>
             </PatternLayout>
         </Console>
     </Appenders>

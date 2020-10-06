@@ -12,6 +12,8 @@ repositories {
 ext {
     apacheLoggingVersion = '2.13.3'
     junitVersion = "5.7.0"
+    slf4jVersion = "1.7.30"
+    kotlinMdcIntegrationVersion = "1.3.9"
     vertxVerxion = '3.9.3'
 }
 
@@ -31,8 +33,11 @@ dependencies {
     implementation "io.vertx:vertx-lang-kotlin:$vertxVerxion"
     implementation "io.vertx:vertx-lang-kotlin-coroutines:$vertxVerxion"
 
+    implementation "org.slf4j:slf4j-api:$slf4jVersion"
     implementation "org.apache.logging.log4j:log4j-api:$apacheLoggingVersion"
     implementation "org.apache.logging.log4j:log4j-core:$apacheLoggingVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:$kotlinMdcIntegrationVersion"
+    implementation "org.apache.logging.log4j:log4j-slf4j-impl:$apacheLoggingVersion"
 
     testImplementation "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
