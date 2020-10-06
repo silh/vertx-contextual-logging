@@ -1,0 +1,45 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.4.10'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    apacheLoggingVersion = '2.13.3'
+    junitVersion = "5.7.0"
+    vertxVerxion = '3.9.3'
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        jvmTarget = '11'
+        freeCompilerArgs = ['-Xjsr305=strict']
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+
+    implementation "io.vertx:vertx-core:$vertxVerxion"
+    implementation "io.vertx:vertx-web:$vertxVerxion"
+    implementation "io.vertx:vertx-web-client:$vertxVerxion"
+    implementation "io.vertx:vertx-lang-kotlin:$vertxVerxion"
+    implementation "io.vertx:vertx-lang-kotlin-coroutines:$vertxVerxion"
+
+    implementation "org.apache.logging.log4j:log4j-api:$apacheLoggingVersion"
+    implementation "org.apache.logging.log4j:log4j-core:$apacheLoggingVersion"
+
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+    testImplementation "io.vertx:vertx-junit5:$vertxVerxion"
+}
+
+test {
+    systemProperty "vertx.logger-delegate-factory-class-name", "io.vertx.core.logging.Log4j2LogDelegateFactory"
+    useJUnitPlatform()
+}

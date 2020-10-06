@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout>
+                <Pattern>%d %p %c [%t] requestId=%X{requestId} %m%n</Pattern>
+            </PatternLayout>
+        </Console>
+    </Appenders>
+
+    <Loggers>
+        <Root level="WARN">
+            <AppenderRef ref="console"/>
+        </Root>
+        <Logger name="ib.example" level="DEBUG" additivity="false">
+            <AppenderRef ref="console"/>
+        </Logger>
+    </Loggers>
+
+</Configuration>
