@@ -25,7 +25,7 @@ internal class ServerTest {
     internal fun sendRequests() {
         val testContext = VertxTestContext()
 
-        val numberOfRequests = 10
+        val numberOfRequests = 3
         val checkpoint = testContext.checkpoint(numberOfRequests)
         val httpClient = WebClient.create(vertx)
         (1..numberOfRequests).forEach { n ->

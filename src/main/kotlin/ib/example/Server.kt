@@ -22,7 +22,7 @@ class Server : CoroutineVerticle() {
                 log.info("Hello $name.")
                 vertx.executeBlocking<Unit>(
                     { promise ->
-                        Thread.sleep(100)
+                        Thread.sleep(ThreadLocalRandom.current().nextLong(100, 1000))
                         log.info("Finished waiting for $name")
                         promise.complete()
                     },
@@ -39,6 +39,6 @@ class Server : CoroutineVerticle() {
         log.info("Listening on port 8080")
     }
 
-    private fun createRequestId() = ThreadLocalRandom.current().nextLong().toString(16)
+    private fun createRequestId() = ThreadLocalRandom.current().nextLong(0, Long.MAX_VALUE).toString(16)
 
 }
