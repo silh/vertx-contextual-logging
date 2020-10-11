@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
-
     <Appenders>
         <Console name="console" target="SYSTEM_OUT">
             <PatternLayout>
-                <Pattern>%p [%t] requestId=%X{requestId} %m%n</Pattern>
+                <Pattern>%p [%t] requestId=%vcl{requestId} %m%n</Pattern>
             </PatternLayout>
         </Console>
     </Appenders>
-
     <Loggers>
         <Root level="WARN">
             <AppenderRef ref="console"/>
@@ -17,5 +15,4 @@
             <AppenderRef ref="console"/>
         </Logger>
     </Loggers>
-
 </Configuration>

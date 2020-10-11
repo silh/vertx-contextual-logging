@@ -1,10 +1,10 @@
 package ib.example
 
+import io.github.tsegismont.vertx.contextual.logging.ContextualData
 import io.vertx.core.logging.LoggerFactory
 import io.vertx.ext.web.Router
 import io.vertx.kotlin.core.http.listenAwait
 import io.vertx.kotlin.coroutines.CoroutineVerticle
-import org.slf4j.MDC
 import java.util.concurrent.ThreadLocalRandom
 
 class Server : CoroutineVerticle() {
@@ -16,8 +16,7 @@ class Server : CoroutineVerticle() {
             .get("/hello")
             .handler { req ->
                 val reqId = createRequestId()
-                MDC.put("requestId", reqId)
-
+                ContextualData.put("requestId", reqId)
                 val name: String = req.request().getParam("name") ?: "anonymous"
                 log.info("Hello $name.")
                 vertx.executeBlocking<Unit>(
@@ -28,7 +27,6 @@ class Server : CoroutineVerticle() {
                     },
                     {
                         log.info("Bye $name.")
-                        MDC.remove("requestId")
                         req.response().end()
                     }
                 )
